@@ -1,21 +1,25 @@
 <script>
-	let firstName = 'Jimi';
-	let lastName = 'Hendrix';
+	let people = [
+		{ id: 1, firstName: 'Ivan', lastName: 'LastName', age: 30 },
+		{ id: 2, firstName: 'Olga', lastName: 'LastName', age: 27 },
+		{ id: 3, firstName: 'FirstName', lastName: 'LastName', age: 32 }
+	];
 
-	$: fullName = `${firstName} ${lastName}`;
-	$: {
-		console.log(firstName);
-		console.log(lastName);
-		console.log(fullName);
+	const handleClick = (id) => {
+		people = people.filter(person => person.id !== id);
 	}
 </script>
 
 <main>
-	<h1>Hello, {fullName}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
-
-	<input type="text" bind:value={firstName}>
-	<input type="text" bind:value={lastName}>
+	{ #each people as person (person.id)}
+		<div>
+			<h2>{person.firstName} {person.lastName}</h2>
+			<p>{person.age} years old</p>
+			<button on:click={() => handleClick(person.id)}>delete</button>
+		</div>
+	{:else}
+		<p>There are no people to show</p>
+	{/each}
 </main>
 
 <style>
