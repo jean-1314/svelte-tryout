@@ -1,4 +1,6 @@
 <script>
+	import Modal from './Modal.svelte';
+
 	let people = [
 		{ id: 1, firstName: 'Ivan', lastName: 'LastName', age: 30 },
 		{ id: 2, firstName: 'Olga', lastName: 'LastName', age: 27 },
@@ -7,14 +9,28 @@
 
 	const handleClick = (id) => {
 		people = people.filter(person => person.id !== id);
-	}
+	};
+
+	let num = 1;
 </script>
 
+{#if num > 20}
+	<p>Greater then 20</p>
+{:else if num > 5}
+	<p>Greater than 5</p>
+{:else}
+	<p>Not greater than 5</p>
+{/if}
+
+<Modal />
 <main>
 	{ #each people as person (person.id)}
 		<div>
 			<h2>{person.firstName} {person.lastName}</h2>
 			<p>{person.age} years old</p>
+			{#if person.age > 30}
+				<p>Too old</p>
+			{/if}
 			<button on:click={() => handleClick(person.id)}>delete</button>
 		</div>
 	{:else}
