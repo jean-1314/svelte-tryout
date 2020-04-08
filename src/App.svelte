@@ -22,7 +22,7 @@
 	<p>Not greater than 5</p>
 {/if}
 
-<Modal />
+<Modal message="value" isPromo={true}/>
 <main>
 	{ #each people as person (person.id)}
 		<div>
