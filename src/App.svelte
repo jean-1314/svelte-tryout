@@ -1,5 +1,6 @@
 <script>
 	import Modal from './Modal.svelte';
+	import AddPersonForm from './AddPersonForm.svelte';
 
 	let showModal = false;
 
@@ -28,7 +29,10 @@
 	<p>Not greater than 5</p>
 {/if}
 
-<Modal message="value" isPromo={true} {showModal} on:click={toggleModal} />
+<Modal {showModal} on:click={toggleModal}>
+	<h3>Add a New Person</h3>
+	<AddPersonForm />
+</Modal>
 <main>
 	<button on:click={toggleModal}>Open Modal</button>
 	{ #each people as person (person.id)}

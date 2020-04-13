@@ -10,7 +10,7 @@
     class="backdrop"
     class:promo={isPromo}>
     <div class="modal">
-      <p>{message}</p>
+      <slot/>
     </div>
   </div>
 {/if}
