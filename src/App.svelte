@@ -19,6 +19,12 @@
 	};
 
 	let num = 1;
+
+	const addPerson = (e) => {
+		const person = e.detail;
+		people = [person, ...people];
+		showModal = false;
+	};
 </script>
 
 {#if num > 20}
@@ -31,7 +37,7 @@
 
 <Modal {showModal} on:click={toggleModal}>
 	<h3>Add a New Person</h3>
-	<AddPersonForm />
+	<AddPersonForm on:addPerson={addPerson}/>
 </Modal>
 <main>
 	<button on:click={toggleModal}>Open Modal</button>
